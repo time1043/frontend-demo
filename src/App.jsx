@@ -1,35 +1,9 @@
-import { useEffect, useState } from "react";
+import { useAdvice } from "./hooks/useAdvice";
+import { useCurrentTime } from "./hooks/useCurrentTime";
 
 export default function App() {
-  const [advice, setAdvice] = useState("Advice ...");
-  const [isLoading, setIsLoading] = useState(false);
-
-  async function getAdvice() {
-    setIsLoading(true);
-
-    // https://api.adviceslip.com/
-    const response = await fetch("https://api.adviceslip.com/advice");
-    const data = await response.json();
-
-    setAdvice(data.slip.advice);
-    setIsLoading(false);
-  }
-
-  useEffect(() => {
-    getAdvice();
-  }, []);
-
-  const [currentTime, setCurrentTime] = useState(new Date().toLocaleString());
-
-  useEffect(() => {
-    // setup code
-    const interval = setInterval(() => {
-      setCurrentTime(new Date().toLocaleString());
-    }, 1000);
-
-    // cleanup code
-    return () => clearInterval(interval);
-  }, []); // dependency array
+  const { advice, isLoading, getAdvice } = useAdvice();
+  const { currentTime } = useCurrentTime();
 
   return (
     <main>
