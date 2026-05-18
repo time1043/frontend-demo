@@ -1,17 +1,30 @@
 function App() {
+  const [submitted, setSubmitted] = React.useState(false);
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
 
+  const isUsernameValid = username.length >= 3;
+  const isPasswordValid = password.length >= 6;
+
+  // computed based on state - derived state
+  const usernameClass = isUsernameValid || !submitted ? "" : "input-error";
+  const passwordClass = isPasswordValid || !submitted ? "" : "input-error";
+
   function handleSubmit(event) {
     event.preventDefault();
+    setSubmitted(true);
+
+    // validation
+    if (!isUsernameValid || !isPasswordValid)
+      return alert("Invalid username or password");
+
+    // mock submission
     alert(`username: ${username}, password: ${password}`);
 
+    // reset
     setUsername("");
     setPassword("");
-
-    // const formData = new FormData(event.target);
-    // const username = formData.get("username")
-    // const password = formData.get("password")
+    setSubmitted(false);
   }
 
   return (
@@ -19,10 +32,9 @@ function App() {
       <h1>Login</h1>
 
       <form onSubmit={handleSubmit}>
-        {/* input.id binding with label.for */}
-        {/* input.name is used for form data */}
         <label htmlFor="username">Username</label>
         <input
+          className={usernameClass}
           type="text"
           id="username"
           name="username"
@@ -32,6 +44,7 @@ function App() {
 
         <label htmlFor="password">Password</label>
         <input
+          className={passwordClass}
           type="password"
           id="password"
           name="password"
