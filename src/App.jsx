@@ -1,4 +1,6 @@
 import { useState } from "react";
+import PasswordInput from "./components/PasswordInput";
+import UsernameInput from "./components/UsernameInput";
 
 export default function App() {
   const [submitted, setSubmitted] = useState(false);
@@ -33,25 +35,12 @@ export default function App() {
       <h1>Login</h1>
 
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username</label>
-        <input
-          className={usernameClass}
-          type="text"
-          id="username"
-          name="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
+        {/* <UsernameInput username={username} setUsername={setUsername} usernameClass={usernameClass} /> */}
+        {/* <PasswordInput password={password} setPassword={setPassword} passwordClass={passwordClass} /> */}
 
-        <label htmlFor="password">Password</label>
-        <input
-          className={passwordClass}
-          type="password"
-          id="password"
-          name="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        {/* ES6 destructuring: {...props} */}
+        <UsernameInput {...{ username, setUsername, usernameClass }} />
+        <PasswordInput {...{ password, setPassword, passwordClass }} />
 
         <button type="submit">Submit</button>
       </form>
