@@ -1,4 +1,7 @@
 import { useState } from "react";
+import CircleProperty from "./components/CircleProperty";
+import TextColor from "./components/TextColor";
+import TogglePurple from "./components/TogglePurple";
 
 export default function App() {
   const [isPurple, setIsPurple] = useState(false);
@@ -18,45 +21,14 @@ export default function App() {
 
   return (
     <main>
-      <label>
-        Purple
-        <input
-          type="checkbox"
-          checked={isPurple}
-          onChange={() => setIsPurple((isPurple) => !isPurple)}
-          // onChange={(e) => setIsPurple(e.target.checked)}
-        />
-      </label>
-
-      <label>
-        text color
-        <select
-          value={textColor}
-          onChange={(e) => setTextColor(e.target.value)}
-        >
-          <option value="">White</option>
-          <option value="text-black">Black</option>
-          <option value="text-orange">Orange</option>
-        </select>
-      </label>
-
-      <label>
+      <TogglePurple {...{ isPurple, setIsPurple }} />
+      <TextColor {...{ textColor, setTextColor }} />
+      <CircleProperty property={circleSize} setProperty={setCircleSize}>
         Circle Size
-        <input
-          type="number"
-          value={circleSize}
-          onChange={(e) => setCircleSize(Number(e.target.value))}
-        />
-      </label>
-
-      <label>
+      </CircleProperty>
+      <CircleProperty property={circleRotate} setProperty={setCircleRotate}>
         Circle Rotate
-        <input
-          type="number"
-          value={circleRotate}
-          onChange={(e) => setCircleRotate(Number(e.target.value))}
-        />
-      </label>
+      </CircleProperty>
 
       <div className={circleClass} style={circleStyle}>
         Hi!
