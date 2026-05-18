@@ -1,0 +1,52 @@
+main {
+  max-width: 360px;
+  margin: 60px auto;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+input,
+select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #000;
+}
+
+/* circle */
+.circle {
+  margin-top: 24px;
+  border-radius: 50%;
+  background: #45d619;
+  color: #fff;
+  font-weight: bold;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.2s ease;
+}
+
+/* variants */
+.purple {
+  background: purple;
+}
+
+.text-black {
+  color: #424242;
+}
+
+.text-orange {
+  color: #ffc26f;
+}
