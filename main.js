@@ -51,12 +51,9 @@ const cities = [
   },
 ];
 
-function App() {
-  function isForecastsValid(forecasts) {
-    return forecasts && forecasts.length > 0;
-  }
-
-  function renderForecastList(forecasts) {
+function ForecastList({ forecasts }) {
+  // if-else / ?:
+  if (forecasts && forecasts.length > 0)
     return forecasts?.map((forecast) => (
       <ul key={forecast.date}>
         <li>
@@ -67,8 +64,10 @@ function App() {
         </li>
       </ul>
     ));
-  }
+  else return <p>Can't find any data</p>;
+}
 
+function App() {
   return (
     <main>
       {cities.map((city) => (
@@ -76,10 +75,7 @@ function App() {
           <h2>{city.country}</h2>
           <h3>{city.name}</h3>
 
-          {/* isForecastsValid(city.forecasts) ? renderForecastList(city.forecasts) : <p>Can't find any data</p> */}
-          {isForecastsValid(city.forecasts) &&
-            renderForecastList(city.forecasts)}
-          {!isForecastsValid(city.forecasts) && <p>Can't find any data</p>}
+          <ForecastList forecasts={city.forecasts} />
         </section>
       ))}
     </main>
