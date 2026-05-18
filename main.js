@@ -1,20 +1,16 @@
 function App() {
-  // Normal variable
-  let text = "react";
-
-  // When the input changes, value and text are updated.
-  // But p tag is not updated.
-  // TLDR: Normal variable could not binding with text value of element
-  function handleChange(event) {
-    const { value } = event.target;
-    text = value;
-    console.log({ value, text });
-  }
+  // State
+  // TLDR: The state changed trigger element updated
+  const [text, setText] = React.useState("react");
 
   return (
     <>
       <h1>React Implementation</h1>
-      <input type="text" onChange={handleChange} />
+      <input
+        type="text"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
       <p>{text}</p>
     </>
   );
